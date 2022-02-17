@@ -1,1 +1,1 @@
-# Leetcode
+Leetcode question solved, so far.
