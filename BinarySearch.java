@@ -31,23 +31,6 @@ public class BinarySearch {
 
     return result;
     }
-    /*
-    public void searchInt(int[] nums, int target){
-        int middleElement = nums.length / 2;
-        if(nums[middleElement] == target){
-            return middleElement;
-        }
-        if(nums[middleElement] > target){
-            //check the left side
-            int[] temp = Arrays.copyOfRange(nums, 0,  middleElement);
-            search(temp, target);
-
-        }else{
-            //check the right side
-            int[] tem1 = Arrays.copyOfRange(nums, middleElement ,  nums.length - 1);
-            search(tem1, target);
-        }
-    }*/
 
 
 }
