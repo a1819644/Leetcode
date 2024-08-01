@@ -4,35 +4,50 @@ public interface MinsubArray {
     public static int minSubArrayLen(int target, int[] nums) {
         int result = Integer.MAX_VALUE;
         int sum = 0;
-        int j = 0;
+        int j = 1;
         int i = 0;
-        while(i < nums.length){
-            sum += nums[i] + nums[j];
-            if (sum >= target) {
-               result = Math.min(result, (j + 1) - i);
-               i++;
-               j = i + 1;
-               sum = 0;
-               continue;
-            }
-            if(j < nums.length){
-                j++;
-            }else{
-                j = i + 1;
-            }
-                       
-            
-            // j reaches the end of the array and still unable to reach the target 
-            // then we simply return the result as we cant reach the target anymore and
-            
-
+        int prev = i;
+        if (nums[i] >= target) {
+            return 1;
         }
-        
-        return result;
+        while (i < nums.length) {
+            if (j < nums.length) {
+                if(nums[j] >= target || nums[i] >= target) {
+                    return 1;
+                }
+                if(prev == i){
+                    sum = nums[i] + nums[j];
+                }else{
+                    sum += nums[j];
+                }
+                if(sum >= target){
+                    result = Math.min(result, ((j - i) + 1));
+                    i++;
+                    prev = i;
+                    j = i + 1;
+                    sum =0;
+                    continue;
+                }
+                
+                else{
+                    j++;
+                    prev++;
+                }
+            }else{
+                break;
+            }
+            
+        }
+        if(result == Integer.MAX_VALUE){
+            return 0;
+        }else{
+            return result;
+        }
+
     }
 
     public static void main(String[] args) {
-        int[] nums = {2,3,1,2,4,3};
-        System.err.println(minSubArrayLen(7, nums));
+        int[] nums = {7,1,100};
+        System.err.println(minSubArrayLen(100, nums));
     }
 }
